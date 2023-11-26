@@ -54,10 +54,6 @@ fpm -s dir \
     --deb-systemd-auto-start \
     "${APPLICATION_PATH}/=${INSTALL_DIRECTORY}/"
 
-
-
-mv "./$APP_VEHICLE_SERVER_OUTPUT_DEB_NAME" "$BUILD_OUTPUT_LOCATION/"
-
 echo "Build .deb Packages Complete"
 
 popd
