@@ -52,25 +52,11 @@ InstallVim()
     apt -y install vim
 }
 
-# https://learn.microsoft.com/en-us/dotnet/iot/deployment was one of the main sources
-InstallDotNet7()
-{
-    Print "Install dot net 7.0" 1
-
-    wget https://dot.net/v1/dotnet-install.sh
-    sudo bash ./dotnet-install.sh --channel 7.0 --install-dir /opt/dotnet/
-    
-    ln -s /opt/dotnet/dotnet /usr/local/bin
-
-    echo 'export DOTNET_ROOT=/opt/dotnet' >> /home/pi/.bashrc
-}
-
-
-
 LEDStripSetup()
 {
     Print "Installing Python and NeoPixel tools" 1
  
+    #For Debian 12 (Bookworm) in installation is quite ridiculous and requires a --break-system-packages flag!!
     apt install python3-pip
     apt install --upgrade python3-setuptools
     apt install python3.11-venv

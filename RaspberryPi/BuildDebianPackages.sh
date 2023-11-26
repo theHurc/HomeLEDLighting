@@ -9,27 +9,27 @@ fi
 # Assign the VERSION parameter to the first command line parameter
 VERSION="$1"
 
+LED_SERVICE_PACKAGE_NAME="led-service"
+APPLICATION_PATH="../Application/MovingPixel.py"
+INSTALL_DIRECTORY="/opt/leds"
+COMPANY="McKinley Ave"
+COMPANY_CONTACT_INFO="jake.a.baldwin@gmail.com"
+APP_VEHICLE_SERVER_OUTPUT_DEB_NAME="${LED_SERVICE_PACKAGE_NAME}_${VERSION}_all.deb"
+BUILD_OUTPUT_LOCATION="../Build"
+
 echo "Removing Debian old Packages"
 
-ALL_DEBIAN_PACKAGES="$(find . -maxdepth 4 -name '*.deb')"
+ALL_DEBIAN_PACKAGES="$(find $BUILD_OUTPUT_LOCATION -maxdepth 4 -name '*.deb')"
 
 for i in $ALL_DEBIAN_PACKAGES ; do
   echo "Removing .deb package $i"
   rm -rf $i
 done
 
-LED_SERVICE_PACKAGE_NAME="led-service"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 pushd $DIR
 
-LED_SCRIPT_APPLICATION_PATH="../MovingPixel.py"
-
-INSTALL_DIRECTORY="/opt/leds"
-COMPANY="McKinley Ave"
-COMPANY_CONTACT_INFO="jake.a.baldwin@gmail.com"
-
-APP_VEHICLE_SERVER_OUTPUT_DEB_NAME="${LED_SERVICE_PACKAGE_NAME}_${VERSION}.deb"
 
 if ! command -v fpm &> /dev/null; then
     echo "fpm is not installed. Install with:"
@@ -52,7 +52,11 @@ fpm -s dir \
     --deb-systemd "${LED_SERVICE_PACKAGE_NAME}.service" \
     --deb-systemd-enable \
     --deb-systemd-auto-start \
-    "${LED_SCRIPT_APPLICATION_PATH}/=${INSTALL_DIRECTORY}/"
+    "${APPLICATION_PATH}/=${INSTALL_DIRECTORY}/"
+
+
+
+mv "./$APP_VEHICLE_SERVER_OUTPUT_DEB_NAME" "$BUILD_OUTPUT_LOCATION/"
 
 echo "Build .deb Packages Complete"
 
