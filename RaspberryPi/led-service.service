@@ -1,0 +1,13 @@
+[Unit]
+Description=LED Service
+After=network.target
+
+[Service]
+ExecStart=python /opt/leds/MovingPixel.py
+Restart=on-failure
+RestartSec=10s
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
+
