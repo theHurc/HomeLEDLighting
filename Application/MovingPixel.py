@@ -23,16 +23,16 @@ def ClearPixels(index: int, isForward: bool):
 def SetPixels(index: int, isForward: bool):
     pixels[index] = solidMovingPixelColor
     
-    if isForward:
-        if (index - 1) >= 0:
-            pixels[index - 1] =  trailing1MovingPixelColor
-        if (index - 2 ) >= 0:
-            pixels[index - 2] =  trailing2MovingPixelColor
-    else:
-        if (index + 1) <= (pixelCount - 1):
-            pixels[index + 1] =  trailing1MovingPixelColor
-        if (index  + 2 ) <= (pixelCount - 1):
-            pixels[index + 2] =  trailing2MovingPixelColor
+#    if isForward:
+#        if (index - 1) >= 0:
+#            pixels[index - 1] =  trailing1MovingPixelColor
+#        if (index - 2 ) >= 0:
+#            pixels[index - 2] =  trailing2MovingPixelColor
+#    else:
+#        if (index + 1) <= (pixelCount - 1):
+#            pixels[index + 1] =  trailing1MovingPixelColor
+#        if (index  + 2 ) <= (pixelCount - 1):
+#            pixels[index + 2] =  trailing2MovingPixelColor
 
 def UpdatePixelPosition(index: int, isForward: bool) -> Tuple[int, bool]:
     if isForward:
@@ -74,7 +74,7 @@ pixels.fill(solidSteadStatePixelColor)
 
 ticker = threading.Event()
 
-while not ticker.wait(.1):
+while not ticker.wait(.05):
     UpdatePixel()
 
 

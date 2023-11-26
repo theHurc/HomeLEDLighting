@@ -9,3 +9,8 @@ Code for a permanent home LED lighting system.
     Update the version number in `Version.txt`
 - Build:
     From a windows command line run `python BuildApplication.py`
+    
+# Install
+
+- Copy Debian package: `./Build/led-service_x.x.x_all.deb`
+- SCP the Debian package to Raspberry Pi and install with `sudo dpkg -i led-service_x.x.x_all.deb`

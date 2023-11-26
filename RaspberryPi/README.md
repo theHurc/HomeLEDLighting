@@ -33,6 +33,8 @@ After successful Linux Setup described above:
 
 ## Debian package
 
+**Use the build script at the top level of this repo to build the application which calls this packaging script.**
+
 #### Build
 
  - From a WSL command line, run `sudo ./BuildDebianPackages.sh x.x.x` where `x.x.x` is the version number
