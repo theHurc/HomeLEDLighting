@@ -4,15 +4,20 @@ import board
 import neopixel
 from typing import Tuple
 
-solidMovingPixelColor = (255, 0, 0, 0)
-trailing1MovingPixelColor = (100, 0, 0, 0)
-trailing2MovingPixelColor = (32, 0, 0, 0)
+redColor = (255, 0, 0)
+greenColor = (0, 255, 0)
+blueColor = (0, 0, 255)
 
-solidSteadStatePixelColor = (0, 0, 255, 0)
+orangeColor = (255, 5, 0)
+purpleColor = (128, 0, 64)
+yellowColor = (255, 100, 0)
+
+solidMovingPixelColor = blueColor
+solidSteadStatePixelColor = orangeColor
 
 
 centerPixelIndex = 0
-pixelCount = 50
+pixelCount = 450
 brightness = 1.0
 isForwardDirection = True
 
@@ -23,16 +28,6 @@ def ClearPixels(index: int, isForward: bool):
 def SetPixels(index: int, isForward: bool):
     pixels[index] = solidMovingPixelColor
     
-#    if isForward:
-#        if (index - 1) >= 0:
-#            pixels[index - 1] =  trailing1MovingPixelColor
-#        if (index - 2 ) >= 0:
-#            pixels[index - 2] =  trailing2MovingPixelColor
-#    else:
-#        if (index + 1) <= (pixelCount - 1):
-#            pixels[index + 1] =  trailing1MovingPixelColor
-#        if (index  + 2 ) <= (pixelCount - 1):
-#            pixels[index + 2] =  trailing2MovingPixelColor
 
 def UpdatePixelPosition(index: int, isForward: bool) -> Tuple[int, bool]:
     if isForward:
@@ -68,13 +63,13 @@ def UpdatePixel():
 print("Running Moving Pixel program...")
 
 # auto_write=False means the LEDs won't be updated until .show() is called which can save tons of write cycles
-pixels = neopixel.NeoPixel(board.D21, pixelCount, bpp=4, brightness=brightness, auto_write=False)
+pixels = neopixel.NeoPixel(board.D21, pixelCount, bpp=3, brightness=brightness, auto_write=False)
 
 pixels.fill(solidSteadStatePixelColor)
 
 ticker = threading.Event()
 
-while not ticker.wait(.05):
+while not ticker.wait(.017):
     UpdatePixel()
 
 
