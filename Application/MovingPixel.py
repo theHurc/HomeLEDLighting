@@ -15,12 +15,13 @@ yellowColor = (255, 100, 0)
 whiteColor = (255, 255, 255)
 offColor = (0, 0, 0)
 
-solidMovingPixelColor = purpleColor
-solidSteadStatePixelColor = purpleColor
+solidMovingPixelColor = offColor
+solidSteadStatePixelColor = offColor
 
 
 centerPixelIndex = 0
-pixelCount = 324 # First story LED strip length
+#pixelCount = 321 # First story LED strip length
+pixelCount = 413 # Second story LED strip length
 brightness = 1.0
 isForwardDirection = True
 
@@ -67,7 +68,7 @@ print("Running Moving Pixel program...")
 
 # auto_write=False means the LEDs won't be updated until .show() is called which can save tons of write cycles
 # Use either board.D18 or board.D21
-pixels = neopixel.NeoPixel(board.D18, pixelCount, bpp=3, brightness=brightness, auto_write=False)
+pixels = neopixel.NeoPixel(board.D21, pixelCount, bpp=3, brightness=brightness, auto_write=False)
 
 pixels.fill(solidSteadStatePixelColor)
 
